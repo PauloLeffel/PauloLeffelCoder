@@ -1,33 +1,54 @@
-function rolarDados() {
-    const tipoDado = parseInt(prompt("Digite o tipo de dado (4, 6, 8, 10, 12, 20):"));
+document.addEventListener("DOMContentLoaded", () => {
+  const tipoDado = document.getElementById("tipoDado");
+  const vantagem = document.getElementById("vantagem");
+  const rolarBtn = document.getElementById("rolarBtn");
+  const resultado = document.getElementById("resultado");
+  const historicoBtn = document.getElementById("historicoBtn");
+  const limparBtn = document.getElementById("limparHistoricoBtn");
+  const historico = document.getElementById("historico");
 
-    if (isNaN(tipoDado) || ![4, 6, 8, 10, 12, 20].includes(tipoDado)) {
-        alert("Você digitou um tipo de dado inválido.");
-        return;
-    }
+  function rolarDado(max) {
+    return Math.floor(Math.random() * max) + 1;
+  }
 
-    const usarVantagem = confirm("Você deseja jogar com VANTAGEM?");
+  function salvarHistorico(texto) {
+    let registros = JSON.parse(localStorage.getItem("historicoRolagens")) || [];
+    registros.push(texto);
+    localStorage.setItem("historicoRolagens", JSON.stringify(registros));
+  }
 
-    let resultado1 = Math.floor(Math.random() * tipoDado) + 1;
-    let resultadoFinal;
+  rolarBtn.addEventListener("click", () => {
+    const dado = parseInt(tipoDado.value);
+    const usarVantagem = vantagem.checked;
+    const r1 = rolarDado(dado);
+    let textoResultado = "";
 
     if (usarVantagem) {
-        let resultado2 = Math.floor(Math.random() * tipoDado) + 1;
-        resultadoFinal = Math.max(resultado1, resultado2);
-
-        alert(`Você rolou com vantagem!\nPrimeiro dado: ${resultado1}\nSegundo dado: ${resultado2}\nResultado final (maior valor): ${resultadoFinal}`);
-        console.log("Rolagem com vantagem:", resultado1, resultado2, "→ Resultado:", resultadoFinal);
+      const r2 = rolarDado(dado);
+      const maior = Math.max(r1, r2);
+      textoResultado = `Rolagem com vantagem: ${r1} e ${r2} → Resultado: ${maior}`;
     } else {
-        resultadoFinal = resultado1;
-        alert(`Você rolou normalmente e tirou: ${resultadoFinal}`);
-        console.log("Rolagem normal:", resultadoFinal);
+      textoResultado = `Rolagem normal: ${r1}`;
     }
-}
 
-const querJogar = confirm("Quer rolar os dados?");
-if (querJogar) {
-    rolarDados();
-} else {
-    alert("Ok, até a próxima!");
-    console.log("Usuário optou por não jogar.");
-}
+    resultado.innerText = textoResultado;
+    salvarHistorico(textoResultado);
+  });
+
+  historicoBtn.addEventListener("click", () => {
+    historico.innerHTML = "";
+    const registros = JSON.parse(localStorage.getItem("historicoRolagens")) || [];
+
+    registros.forEach(item => {
+      const li = document.createElement("li");
+      li.innerText = item;
+      historico.appendChild(li);
+    });
+  });
+
+  limparBtn.addEventListener("click", () => {
+    localStorage.removeItem("historicoRolagens");
+    historico.innerHTML = "";
+    resultado.innerText = "";
+  });
+});

@@ -79,6 +79,57 @@ nav button:hover, nav a:hover {
   text-decoration: none;
 }
 
+/* CSS do coder.html */
+
+.tabeladados {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 2px solid black;
+  width: auto;
+  height: auto;
+  color: white;
+  font-size: 1.5em;
+  background-color: rgba(255, 255, 255, 0.267);
+  border-radius: 10px;
+}
+.titulodados {
+  font-size: 1.5em;
+}
+.subtitulodados {
+  font-size: 1.2em;
+}
+.labeldados, .labeldados {
+  display: flex;
+  margin: 10px;
+}
+.selectdados {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  width: 200px;
+  height: 30px;
+  border-radius: 10px;
+  background-color: rgba(20, 27, 34, 0.685);
+  color: white;
+}
+.botaodados {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 40px;
+  border-radius: 10px;
+  background-color: rgba(20, 27, 34, 0.685);
+  color: white;
+  font-family: "MedievalSharp", serif;
+  font-size: large;
+  cursor: pointer;
+  margin: 10px;
+}
+
 /* CSS DO index.html*/
 main {
   display: grid;

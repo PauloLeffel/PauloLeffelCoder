@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>RPG e D&D | Produtos, Downloads e Guias</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/style.css">
+        <meta name="description" content="Explore o universo de RPG e D&D com produtos exclusivos, downloads úteis e informações essenciais para jogadores iniciantes e veteranos. Tudo para sua aventura épica.">
+        <meta name="keywords" content="RPG, D&D, Role-playing game, Aventuras, Tabuleiro, Downloads, Produtos RPG, Camisas RPG, Bonés RPG, Guia para iniciantes, Regras D&D">
+        <meta name="author" content="Paulo Henrique Leffel">
+        <meta name="robots" content="index, follow">
+        <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
+       
+    </head>
+    <body>
+        <header><img class="cabecalho" src="imagens\logo.jpg" alt="Logo"></header>
+        <nav>
+            <button><a href="index.html">Inicio</a></button>   
+            <button><a href="coder.html">CoderHouse</a></button>    
+            <button><a href="produtos.html">Produtos</a></button>       
+            <button><a href="download.html">Download</a></button>
+            <button><a href="curiosidades.html">Curiosidades</a></button>
+        </nav>
+<body>
+    <div class="tabeladados">
+
+  <h1 class="titulodados"> Simulador de Rolagens de Dados de D&D</h1>
+  <label class="labeldados" for="tipoDado">Escolha o tipo de dado:</label>
+  <select class="selectdados" id="tipoDado">
+    <option value="4">Dado de 4 lados</option>
+    <option value="6">Dado de 6 lados</option>
+    <option value="8">Dado de 8 lados</option>
+    <option value="10">Dado de 10 lados</option>
+    <option value="12">Dado de 12 lados</option>
+    <option value="20">Dado de 20 lados</option>
+  </select>
+
+  <label>
+    <input type="checkbox" id="vantagem">
+    Jogar com vantagem
+  </label>
+
+ 
+  <button class="botaodados" id="rolarBtn">Rolar Dado</button>
+  <button class="botaodados" id="historicoBtn">Histórico</button>
+  <button class="botaodados" id="limparHistoricoBtn">Limpar Histórico</button>
+
+  <h2 class="subtitulodados">Resultado:</h2>
+  <div id="resultado"></div>
+
+  <h2 class="subtitulodados">Histórico de Rolagens:</h2>
+  <ul id="historico"></ul>
+
+</div>
+
+          <footer>
+            <a class="socialink" href="https://www.instagram.com/pauloleffel/" target="_blank">Instagram
+                <img class="imgfooter" src="imagens/insta.png" alt="Instagram">
+            </a>
+            <a class="socialink" href="https://www.facebook.com/paulo.leffel/" target="_blank">Facebook
+                <img class="imgfooter" src="imagens/facebook.png" alt="Facebook">
+            </a>
+            <a class="socialink" href="https://br.linkedin.com/in/paulo-henrique-leffel-90472b16a" target="_blank">Linkedin
+                <img class="imgfooter" src="imagens/linkedin.png" alt="Linkedin">
+            </a>
+        </footer>
+        <span>© 2024 Paulo Leffel Site. Todos os direitos reservados.</span>
+        <script src="script.js"></script>
+</body>
+</html>
