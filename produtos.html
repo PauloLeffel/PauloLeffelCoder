@@ -23,37 +23,105 @@
             <button><a href="curiosidades.html">Curiosidades</a></button>
         </nav>
 
-        <main class="container-produtos">
-               
-            <div class="divcontainer">
-                <img class="produtovenda" src="imagens/bone.jpeg" alt="Venda de Boné D&D">
-                <p class="preco">De <span class="preco-antigo">R$ 99,90</span> por <span class="preco-atual">R$ 79,90</span></p>
-                     <button class="compreaqui">Clique aqui para comprar</button>
-                     <div class="container-vendas">
-                        <p class="textovendas"><span class="spanvendas">Saiba mais</span>Explore a essência do mundo de aventuras com o Boné RPG Exclusivo. Todo preto, com design minimalista e elegante, este boné é confeccionado em tecido de alta qualidade, combinando durabilidade, conforto e estilo.</p>      
-                    </div>
+ <main class="container-produtos">
+    
+</main>
+    <div class="boxcarrinho">
+        <section id="carrinho">
+            <h2>Carrinho</h2>
+            <ul id="lista-carrinho"></ul>
+            <p id="total">Total: R$ 0,00</p>
+            <button id="finalizar">Finalizar Compra</button>
+        </section>
+    </div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    const produtos = [
+        {
+            id: 1,
+            nome: "Boné RPG Exclusivo",
+            precoAntigo: 99.90,
+            precoAtual: 79.90,
+            descricao: "Explore a essência do mundo de aventuras com o Boné RPG Exclusivo. Todo preto, com design minimalista e elegante.",
+            imagem: "imagens/bone.jpeg"
+        },
+        {
+            id: 2,
+            nome: "Camiseta RPG Exclusiva",
+            precoAntigo: 79.90,
+            precoAtual: 59.90,
+            descricao: "Mostre sua paixão por RPG com estilo com a Camiseta RPG Exclusiva. Em tom preto clássico e tecido confortável.",
+            imagem: "imagens/camisa.jpeg"
+        },
+        {
+            id: 3,
+            nome: "Moletom RPG Exclusivo",
+            precoAntigo: 199.90,
+            precoAtual: 179.90,
+            descricao: "Leve o universo RPG para qualquer lugar com o Moletom RPG Exclusivo. Toque macio e aquecimento ideal.",
+            imagem: "imagens/moletom.jpeg"
+        }
+    ];
+   
+    const container = document.querySelector(".container-produtos");
+
+    produtos.forEach(produto => {
+        const div = document.createElement("div");
+        div.classList.add("divcontainer");
+
+        div.innerHTML = `
+            <img class="produtovenda" src="${produto.imagem}" alt="${produto.nome}">
+            <p class="preco">De <span class="preco-antigo">R$ ${produto.precoAntigo.toFixed(2)}</span> por <span class="preco-atual">R$ ${produto.precoAtual.toFixed(2)}</span></p>
+            <button class="compreaqui" data-id="${produto.id}">Adicionar ao Carrinho</button>
+            <div class="container-vendas">
+                <p class="textovendas"><span class="spanvendas">Saiba mais</span>${produto.descricao}</p>
             </div>
+        `;
+        container.appendChild(div);
+    });
 
-            <div class="divcontainer">
-                <img class="produtovenda" src="imagens/camisa.jpeg" alt="Venda de Camisa D&D">
-                <p class="preco">De <span class="preco-antigo">R$ 79,90</span> por <span class="preco-atual">R$ 59,90</span></p>
-                    <button class="compreaqui">Clique aqui para comprar</button>
-                    <div class="container-vendas">
-                        <p class="textovendas"><span class="spanvendas">Saiba mais</span>Mostre sua paixão por RPG com estilo com a Camiseta RPG Exclusiva. Em tom preto clássico, esta camiseta é confeccionada em tecido de alta qualidade, com uma textura macia e respirável, perfeita para uso prolongado, seja em sessões épicas ou no dia a dia.</p>      
-                    </div>
-            </div>    
+    let carrinho = [];
 
-            <div class="divcontainer">
-                <img class="produtovenda" src="imagens/moletom.jpeg" alt="Venda de Moletom D&D">
-                <p class="preco">De <span class="preco-antigo">R$ 199,90</span> por <span class="preco-atual">R$ 179,90</span></p>
-                     <button class="compreaqui">Clique aqui para comprar</button>
-                    <div class="container-vendas">
-                        <p class="textovendas"><span class="spanvendas">Saiba mais</span>Leve o universo RPG para qualquer lugar com o Moletom RPG Exclusivo. Todo preto e feito com tecido de alta qualidade, ele oferece um toque macio por dentro e por fora, proporcionando aquecimento e conforto ideais para dias frios ou noites de aventura.</p>      
-                    </div>
-            </div>    
+    function atualizarCarrinho() {
+        const lista = document.getElementById("lista-carrinho");
+        const totalElem = document.getElementById("total");
+        lista.innerHTML = "";
+        let total = 0;
+        carrinho.forEach(item => {
+            const li = document.createElement("li");
+            li.textContent = `${item.nome} - R$ ${item.precoAtual.toFixed(2)}`;
+            lista.appendChild(li);
+            total += item.precoAtual;
+        });
+        totalElem.textContent = `Total: R$ ${total.toFixed(2)}`;
+    }
 
-    </main>
+    document.addEventListener("click", e => {
+        if (e.target.classList.contains("compreaqui")) {
+            const id = parseInt(e.target.dataset.id);
+            const produto = produtos.find(p => p.id === id);
+            carrinho.push(produto);
+            atualizarCarrinho();
+            Swal.fire({
+                title: 'Produto adicionado!',
+                text: `${produto.nome} foi adicionado ao carrinho.`,
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        }
+    });
 
+
+    document.getElementById("finalizar").addEventListener("click", () => {
+        if (carrinho.length === 0) {
+            Swal.fire('Carrinho vazio!', 'Adicione produtos antes de finalizar.', 'warning');
+            return;
+        }
+        Swal.fire('Compra finalizada!', 'Agora você está pronto para aventurar-se!', 'success');
+        carrinho = [];
+        atualizarCarrinho();
+    });
+</script>
         <footer>
             <a class="socialink" href="https://www.instagram.com/pauloleffel/" target="_blank">Instagram
                 <img class="imgfooter" src="imagens/insta.png" alt="Instagram">

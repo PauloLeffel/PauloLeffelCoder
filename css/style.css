@@ -177,6 +177,42 @@ h1, h2, h3 {
 }
 
 /* CSS DA PAGINA produtos.html */
+.boxcarrinho {
+  display: flex;
+  justify-content: center;
+}
+#finalizar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 40px;
+  border-radius: 10px;
+  background-color: rgba(51, 112, 32, 0.685);
+  color: white;
+  font-family: "MedievalSharp", serif;
+  font-size: medium;
+  cursor: pointer;
+  margin-top: 10px;
+}
+#carrinho {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 300px;
+  background: rgba(0,0,0,0.8);
+  color: white;
+  padding: 15px;
+  margin: 10px;
+  border-radius: 10px;
+}
+#carrinho ul {
+  list-style: none;
+  padding: 0;
+}
+
 .container-produtos {
   display: flex;
   justify-content: space-evenly;

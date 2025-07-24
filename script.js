@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
       li.innerText = item;
       historico.appendChild(li);
     });
-  });
+    });
 
   limparBtn.addEventListener("click", () => {
     localStorage.removeItem("historicoRolagens");
@@ -52,3 +52,30 @@ document.addEventListener("DOMContentLoaded", () => {
     resultado.innerText = "";
   });
 });
+
+const produtos = [
+  {
+    id: 1,
+    nome: "Boné RPG Exclusivo",
+    precoAntigo: 99.90,
+    precoAtual: 79.90,
+    descricao: "Explore a essência do mundo de aventuras com o Boné RPG Exclusivo. Todo preto, com design minimalista e elegante.",
+    imagem: "imagens/bone.jpeg"
+  },
+  {
+    id: 2,
+    nome: "Camiseta RPG Exclusiva",
+    precoAntigo: 79.90,
+    precoAtual: 59.90,
+    descricao: "Mostre sua paixão por RPG com estilo com a Camiseta RPG Exclusiva. Em tom preto clássico e tecido confortável.",
+    imagem: "imagens/camisa.jpeg"
+  },
+  {
+    id: 3,
+    nome: "Moletom RPG Exclusivo",
+    precoAntigo: 199.90,
+    precoAtual: 179.90,
+    descricao: "Leve o universo RPG para qualquer lugar com o Moletom RPG Exclusivo. Toque macio e aquecimento ideal.",
+    imagem: "imagens/moletom.jpeg"
+  }
+];
